@@ -20,7 +20,30 @@
 
 ### 1. Linting
 
+JSLint is a static code analysis tool used in software development for checking if JavaScript source code complies with coding rules.
+
+It might be necessary to install jslint.
+The easiest way to do this is via npm which is available if you install nodejs(http://nodejs.org/)
+    
+    // the -g flag is necessary to install it globally
+    $ npm install jslint -g
+    
+Now you just have to make it work with your text editor of choice.
+
+####vim
 TODO
+
+####Sublime
+Use package control to install jslint and set it up.
+
+Settings can be opened via the Command Palette, or the Preferences > Package Settings > JSLint > Settings – User menu entry.
+
+    {
+
+        // Options pass to jslint.
+        "jslint_options": "--nomen --predef $, document, _gaq, Modernizr, HandlebarsTemplates, Absolventa, PraktikumInfo, jQuery, console, fixture, describe, it, expect, beforeEach, afterEach, spyOn, loadFixtures, confirm, CustomizeActiveAdmin, unescape,_ --browser"
+
+    }
 
 ### 2. Variables
 
