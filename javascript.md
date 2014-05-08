@@ -24,10 +24,10 @@ JSLint is a static code analysis tool used in software development for checking 
 
 It might be necessary to install jslint.
 The easiest way to do this is via npm which is available if you install nodejs(http://nodejs.org/)
-    
+
     // the -g flag is necessary to install it globally
     $ npm install jslint -g
-    
+
 Now you just have to make it work with your text editor of choice.
 
 ####vim
@@ -371,43 +371,28 @@ To recognise hooked up events on dom nodes at a glance, we use custom data attri
 
 Instead of:
 
-  // MARKUP
-  <a class="button">Click me</a>
+      // MARKUP
+      <a class="button">Click me</a>
 
-  // JS
-    $('.button').click(function() {
-      // DO SOMETHING
-    });
+      // JS (bad)
+      $('.button').click(function() {
+        // DO SOMETHING
+      });
 
 We should avoid using css classes and ids for event handling issues.
 
 So, a better approach would be:
 
-  // MARKUP
-  <a data-action="openLightbox">Click me</a>
+    // MARKUP
+    <a data-action="openLightbox displayOverlay">Click me</a>
 
-  // JS
-    $('[data-action="openLightbox"]').click(function() {
+    // JS (good)
+    $('[data-action~=openLightbox]').on('click', function() {
       // DO SOMETHING
     });
 
-If you don't want to manually bind events to the custom data action attributes, you could use some logic like the following:
-
-  // MARKUP
-  <a data-action="openLightbox">Click me</a>
-
-  // JS
-    var actions = {
-        openLightbox: function() {},
-        submitForm: function() {}
-        //....
-    };
-
-    $(document).on('click', '[data-action]', function() {
-        var action = $(this).data('action'); // Use jQuery for IE6+ compatibility
-        if (action in actions) {
-            actions[action].apply(this, arguments);
-        }
+    $('[data-action~=displayOverlay]').on('click', function() {
+      // DO SOMETHING
     });
 
 ### 15. Appendix
